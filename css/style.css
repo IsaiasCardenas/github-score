@@ -5,27 +5,29 @@ body {
 }
 
 .box_title {
-width: 600px;
-background: url('/img/header.jpg') no-repeat;
-position: relative;
-height: 100px;
-left: 300px;
-background-position-x: 172px;
-background: #BBBBFF;
-}
-
-.titulo{
+	width: 350px;
 	position: absolute;
-	left: 130px;
+	padding-left: 80px;
+	height: 100px;
+	left: 430px;
+	background: #4CC65A;
 }
 
-.box{
-	position: relative;
-	top: 150px;
+img.git {
+	width: 100px;
+	padding-left: 80px;
+	position: absolute;
+	left: 250px;
+
+}
+
+.input{
+	position: absolute;
+	top: 200px;
 	left: 400px
 }
 
-.footer{
+.header{
 	background-image: url('../img/header.jpg');
 	position: fixed;
 	bottom: 0;

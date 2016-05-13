@@ -22,4 +22,35 @@ body {
 	top: 300px;
 }
 
+#header {
+	background-image: url(../img/header.jpg);
+	height: 130px;
+    background-size: 50% 100%;
+}
+
+#contenedor {
+  display: table;
+  border-spacing: 5px;
+  background: #4CC65A;
+  position: absolute;
+  top: 160px;
+  width: 100%;
+}
+#contenidos {
+  display: table-row;
+  background: #1DA02C;
+}
+#score_1, #profile_1, #score_2, #profile_2 {
+  display: table-cell;
+  width: 20%;
+  padding-bottom: 50px;
+}
+
+#profile_1, #profile_2 {
+	padding-left: 30px;
+}
+#vs {
+	 background: #000;
+}
+
 	
