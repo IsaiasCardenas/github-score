@@ -8,9 +8,9 @@ body {
 	width: 350px;
 	position: absolute;
 	padding-left: 80px;
-	height: 100px;
+	height: 90px;
 	left: 430px;
-	background: #4CC65A;
+	border: 5px solid #369;
 }
 
 img.git {

@@ -1,7 +1,6 @@
 body {
 	background: url(../img/fondo.jpg);
 	background-position: center; 
-
 }
 
 .score{
@@ -29,28 +28,71 @@ body {
 }
 
 #contenedor {
-  display: table;
-  border-spacing: 5px;
-  background: #4CC65A;
-  position: absolute;
-  top: 160px;
-  width: 100%;
+	display: table;
+	border-spacing: 5px;
+	position: absolute;
+	top: 150px;
+	width: 97%;
+	height: 75%;
 }
-#contenidos {
-  display: table-row;
-  background: #1DA02C;
+
+#columna1 {
+	display: table-cell;
+	width: 60%;
 }
-#score_1, #profile_1, #score_2, #profile_2 {
-  display: table-cell;
-  width: 20%;
-  padding-bottom: 50px;
+
+#columna2 {
+	padding-left: 25px;
+	padding-right: 25px;
+	display: table-cell;
+	width: 40%;
+}
+
+.fila {
+	display: table-row;
+	height: 50%;
+	width: 100%;
+}
+
+.datos {
+	display: table-cell;
+	width: 100%;
+	padding-bottom: 50px;
+}
+
+#usuario1, #usuario2 {
+	text-align: center;
+}
+
+#usuario2 {
+	padding-top: 60px;
 }
 
 #profile_1, #profile_2 {
 	padding-left: 30px;
-}
-#vs {
-	 background: #000;
+	padding-right: 30px;
 }
 
-	
+#winner {
+	position: relative;
+	top: 100px;
+	text-align: center;
+}
+
+#vs {
+	position: absolute;
+	top: 450px;
+	left: 220px;
+	width: 120px;
+	height: 70px;
+	text-align: center;
+}
+
+h4 {
+	font-size: 150%;
+}
+
+h1 {
+	font-size: 200%;
+}
+
