@@ -1,0 +1,21 @@
+{
+    "name": "IsaiasCardenas/score",
+    "description": "este package calcula los puntajes de 2 usuarios github y dastaca el mayor puntaje",
+    "authors": [
+        {
+            "name": "Isaias Cardenas",
+            "email": "isaias.cardenas@usach.cl"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.2",
+        "vlucas/phpdotenv": "~2.2.1",
+        "twig/twig": "~1.0",
+        "twbs/bootstrap": "^3.3"
+        },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    }
+}
