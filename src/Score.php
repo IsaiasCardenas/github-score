@@ -16,5 +16,4 @@ class Score
     {
         return $this->score;
     }
-
 }

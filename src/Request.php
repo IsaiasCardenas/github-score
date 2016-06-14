@@ -8,7 +8,8 @@ class Request
 {
     private $client;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->client = new Client();
     }
 
@@ -26,7 +27,7 @@ class Request
             ->getContents();
     }
 
-     public function getRepos($username)
+    public function getRepos($username)
     {
         return $this->get('https://api.github.com/users/' . $username . '/repos')
             ->getBody()
@@ -37,6 +38,6 @@ class Request
     {
         return $this->client->request('GET', $url, [
             'auth' => ['IsaiasCardenas', getenv('GITHUB_PASSWORD')]
-            ]);       
+            ]);
     }
 }

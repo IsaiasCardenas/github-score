@@ -14,30 +14,21 @@ class User
     private $photo;
     private $stars;
 
-    public function __construct($json)
+    public function __construct()
     {
-    	if (is_null($json->name)) {
-    		$this->name = "NO NAME";
-        }
-        else {
-        	$this->name = $json->name;        	
-        }
-        $this->username = $json->login;
-        $this->followers = $json->followers;
-        $this->photo = $json->avatar_url; 
         $this->eventsScore = [
-			"create" => 0,
-			"push" => 0,
-			"issues" => 0,
-			"commit" => 0,
-			"otro" => 0];
+        "create" => 0,
+        "push" => 0,
+        "issues" => 0,
+        "commit" => 0,
+        "otro" => 0];
 
-		$this->eventsCount = [
-			"create" => 0,
-			"push" => 0,
-			"issues" => 0,
-			"commit" => 0,
-			"otro" => 0];  
+        $this->eventsCount = [
+        "create" => 0,
+        "push" => 0,
+        "issues" => 0,
+        "commit" => 0,
+        "otro" => 0];
     }
 
     public function getUsername()
@@ -80,13 +71,13 @@ class User
 
     public function getEventCount($event)
     {
-         if (is_null($this->eventsScore[$event])) {
+        if (is_null($this->eventsScore[$event])) {
             return "No valid Event";
         }
         return $this->eventsCount[$event];
     }
 
-       public function setStars($array)
+    public function setStars($array)
     {
         $stars_count = 0;
         foreach ($array as $repo) {
@@ -95,44 +86,45 @@ class User
         $this->stars = $stars_count;
     }
 
-    public function setScore() 
+    public function setUser($json)
     {
-		foreach ($this->eventsScore as $key => $value) {
+        if (is_null($json->name)) {
+            $this->name = "NO NAME";
+        } else {
+            $this->name = $json->name;
+        }
+        $this->username = $json->login;
+        $this->followers = $json->followers;
+        $this->photo = $json->avatar_url;
+    }
 
-			$this->score += $value;
-		}
-		$this->score = ($this->stars)*0.4 + ($this->followers)*0.2 + ($this->score)+0.4;
+    public function setScore()
+    {
+        foreach ($this->eventsScore as $key => $value) {
+            $this->score += $value;
+        }
+        $this->score = ($this->stars)*0.4 + ($this->followers)*0.2 + ($this->score)+0.4;
     }
 
     public function setEvents($array)
     {
-		foreach ($array as $event) {
-
-			if ($event->type == "PushEvent"){
-				$this->eventsScore["push"] += 5;
-				$this->eventsCount["push"] += 1;
-	  		}
-
-	  		elseif ($event->type == "CreateEvent"){
-				$this->eventsScore["create"] += 4;
-				$this->eventsCount["create"] += 1;
-	  		}
-	  		elseif ($event->type == "IssuesEvent"){
-				$this->eventsScore["issues"] += 3;
-				$this->eventsCount["issues"] += 1;
-	  		}
-	  		elseif ($event->type == "CommitCommentEvent"){
-				$this->eventsScore["commit"] += 2;
-				$this->eventsCount["commit"] += 1;
-	  		}
-	  		else{
-	  			$this->eventsScore["otro"] += 1;
-	  			$this->eventsCount["otro"] += 1;
-	  		}
-
-		}
+        foreach ($array as $event) {
+            if ($event->type == "PushEvent") {
+                $this->eventsScore["push"] += 5;
+                $this->eventsCount["push"] += 1;
+            } elseif ($event->type == "CreateEvent") {
+                $this->eventsScore["create"] += 4;
+                $this->eventsCount["create"] += 1;
+            } elseif ($event->type == "IssuesEvent") {
+                $this->eventsScore["issues"] += 3;
+                $this->eventsCount["issues"] += 1;
+            } elseif ($event->type == "CommitCommentEvent") {
+                $this->eventsScore["commit"] += 2;
+                $this->eventsCount["commit"] += 1;
+            } else {
+                $this->eventsScore["otro"] += 1;
+                $this->eventsCount["otro"] += 1;
+            }
+        }
     }
-
-
-
 }

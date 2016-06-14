@@ -4,64 +4,60 @@ require 'vendor/autoload.php';
 
 use Src\Request;
 use Src\User;
+use Src\Score;
+use Src\Database;
 use Dotenv\Dotenv;
 
 $dotenv = new Dotenv(__DIR__);
 $dotenv->load();
 
-try {
-	$request = new Request();
+$request = new Request();
+$database = new Database();
+$score = new Score();
+$user1 = new User();
+$user2 = new User();
 
-	$user1 = new User(json_decode($request->getUser($_POST["user1"])));
-	$user1->setEvents(json_decode($request->getEvents($_POST["user1"])));
-	$user1->setStars(json_decode($request->getRepos($_POST["user1"])));
-	$user1->setScore();
+Flight::route('GET /', function () {
+    return view('form.html');
+});
 
-	$user2 = new User(json_decode($request->getUser($_POST["user2"])));
-	$user2->setEvents(json_decode($request->getEvents($_POST["user2"])));
-	$user2->setStars(json_decode($request->getRepos($_POST["user2"])));
-	$user2->setScore();	
-} 
-catch (Exception $e) {
-	header("Location:".$_SERVER['HTTP_REFERER']);  	
-}
+Flight::route('POST /', function () use ($user1, $user2, $request, $dotenv, $database, $score) {
 
+    try {
+        $user1->setUser(json_decode($request->getUser(Flight::request()->data->user1)));
+        $user1->setEvents(json_decode($request->getEvents(Flight::request()->data->user1)));
+        $user1->setStars(json_decode($request->getRepos(Flight::request()->data->user1)));
+        $user1->setScore();
 
+        $user2->setUser(json_decode($request->getUser(Flight::request()->data->user2)));
+        $user2->setEvents(json_decode($request->getEvents(Flight::request()->data->user2)));
+        $user2->setStars(json_decode($request->getRepos(Flight::request()->data->user2)));
+        $user2->setScore();
 
-////// BD ///////////
+        $database->insertUser($user1->getUsername(), $user1->getScore());
+        $database->insertUser($user2->getUsername(), $user2->getScore());
 
-$connection = new PDO('mysql:dbname='. getenv('DB_DATABASE').';host=localhost', getenv('DB_USERNAME'), getenv('DB_PASSWORD'));
-$sqlStatement = $connection->prepare('INSERT INTO scores(username, score) 
-    VALUES(\''.$user1->getUsername().'\', '.$user1->getScore().')');
+        $config_render = [
+            'usuario_1' => $user1,
+            'usuario_2' => $user2
+        ];
 
-if (!($sqlStatement->execute())) {
-	$sqlStatement = $connection->prepare('UPDATE scores SET score = '. $user1->getScore() . 
-	' WHERE username = \''.$user1->getUsername().'\';');
-	$sqlStatement->execute();
-	
-}
+        return view('battle.html', $config_render);
+    } catch (Exception $e) {
+        return view('form.html', ['error' => true]);
+    }
+});
 
-$sqlStatement = $connection->prepare('INSERT INTO scores(username, score) 
-    VALUES(\''.$user2->getUsername().'\', '.$user2->getScore().')');
+Flight::route('/scores', function () use ($database, $score) {
 
-if (!($sqlStatement->execute())) {
-	$sqlStatement = $connection->prepare('UPDATE scores SET score = '.$user2->getScore().
-	' WHERE username = \''.$user2->getUsername().'\';');
-	$sqlStatement->execute();
-	
-}
+    $rankingNumber = 1;
+    $scoreArray = $database->getRanking("scores");
 
+    $config_render = [
+        'scoreArray' => $scoreArray,
+        'rankingNumber' => $rankingNumber
+    ];
+    return view('scores.html', $config_render);
+});
 
-///////////// Main ///////////////////////
-
-
-$loader = new Twig_Loader_Filesystem('templates');
-$twig = new Twig_Environment($loader, ['debug' => true]);
-
-$config_render = [
-	'usuario_1' => $user1,
-	'usuario_2' => $user2
-];
-
-echo $twig->render('git_hub_battle.html', $config_render);
-
+Flight::start();

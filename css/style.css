@@ -1,34 +1,38 @@
 body {
-	background-image: url(../img/fondo.jpg);
+	background-image: url(../img/body.jpg);
 	background-position: center; 
-
+	background-color: black;
 }
 
-.box_title {
-width: 600px;
-background: url('/img/header.jpg') no-repeat;
-position: relative;
-height: 100px;
-left: 300px;
-background-position-x: 172px;
-background: #BBBBFF;
+p {
+	color: white;
+	font-size: 12px;
 }
 
-.titulo{
-	position: absolute;
-	left: 130px;
+
+.btn-primary {
+    border-color: #C9370A;
+    color: #C9370A;
+    background-color: #FF4000;
+    -webkit-transition: all .35s;
+    -moz-transition: all .35s;
+    transition: all .35s;
 }
 
-.box{
-	position: relative;
-	top: 150px;
-	left: 400px
+.btn {
+    border: 0;
+    border-radius: 300px;
+    text-transform: uppercase;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    font-weight: 700;
 }
 
-.footer{
-	background-image: url('../img/header.jpg');
-	position: fixed;
-	bottom: 0;
-	background-repeat: repeat-x;
-
+.btn-circle {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 5;
+  border-radius: 40px;
 }

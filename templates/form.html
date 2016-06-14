@@ -1,0 +1,54 @@
+{% extends layout %}
+
+{% block title %}Github Score{% endblock %}
+
+{% block nav %}
+    <li class="nav-item active">
+        <a class="nav-link" href="./">GithubBattle <span class="sr-only"></span></a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+    <div class="header-content">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-5">
+                <p><h1>Github Battle</h1></p>
+            </div>
+        </div>
+        <form action="./" method="POST" role="form">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <br>
+                    <input type="text" class="form-control" name = "user1" placeholder="Usuario 1" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <br>
+                    <input type="text" class="form-control" name = "user2" placeholder="Usuario 2" required/>
+                    <br><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-5">
+                    <button type="submit" value=" Send" class="btn btn-primary btn btn-circle btn btn-success">
+                    Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <br><br><br>
+                <p>Ingrese los usuarios de github para calcular sus puntajes y verificar un ganador. Buena suerte!</p>
+            </div>
+        </div>
+    </div>
+
+    {% if error %}
+        <hr>
+        <div class='alert alert-danger'>
+            Ingresa nombre de usuario
+        </div>
+    {% endif %}
+{% endblock %}

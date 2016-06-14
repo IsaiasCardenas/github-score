@@ -1,22 +1,25 @@
 {
     "name": "vendor/githubscore",
     "description": "Este package calcula el puntaje github de dos usuarios y los compara mostrando al mayor puntaje como ganador",
-    "require": {
-        "guzzlehttp/guzzle": "^6.2",
-        "vlucas/phpdotenv": "^2.2",
-        "twbs/bootstrap": "^3.3",
-        "twig/twig": "~1.0"
-    },
     "authors": [
         {
             "name": "IsaiasCardenas",
             "email": "isaias.cardenas@usach.cl"
         }
-    ]
-    "autoload":
-        {
+    ],
+    "require": {
+        "twig/twig": "~1.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "vlucas/phpdotenv": "~2.2.1",
+        "twbs/bootstrap": "^3.3",
+        "mikecao/flight": "^1.2"
+    },
+    "autoload": {
         "psr-4": {
             "Src\\": "src/"
-            }
+        },
+        "files": [
+            "src/helpers/helpers.php"
+        ]
     }
 }
