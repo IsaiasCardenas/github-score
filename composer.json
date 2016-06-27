@@ -11,15 +11,15 @@
         "twig/twig": "~1.0",
         "guzzlehttp/guzzle": "~6.0",
         "vlucas/phpdotenv": "~2.2.1",
-        "twbs/bootstrap": "^3.3",
-        "mikecao/flight": "^1.2"
+        "mikecao/flight": "^1.2",
+        "robmorgan/phinx": "^0.6.1"
     },
     "autoload": {
         "psr-4": {
-            "Src\\": "src/"
+            "App\\": "app/"
         },
         "files": [
-            "src/helpers/helpers.php"
+            "app/helpers/helpers.php"
         ]
     }
 }

@@ -1,0 +1,49 @@
+{% extends layout %}
+
+{% block title %}Github Score{% endblock %}
+
+{% block nav %}
+    <li class="nav-item active">
+        <a class="nav-link" href="./">GithubBattle <span class="sr-only"></span></a>
+    </li>
+{% endblock %}
+
+{% block content %}
+
+	<div class="container" id="tabla">
+        <div class="header-content">
+            <div class="header-content-inner">
+            	<div class="row">
+            		<div class="col-md-6 col-md-offset-3 text-center">
+		                <br>
+		               	<h1>Github Ranking</h1>
+		                <br>
+		                <p>Tabla con el ranking Github</p>
+		                <br>
+	                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th><p><strong>Ranking</strong></p></th>
+                        <th><p><strong>USERNAME</strong></p></th>
+                        <th><p><strong>SCORE</strong></p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for scoreElement in scoreArray %}
+                        <tr>
+                            <td><p>{{rankingNumber}}</p></td>
+                            <td><p>{{scoreElement.getUsername}}</p></td>
+                            <td><p>{{scoreElement.getScore}}</p></td>
+                            {%set rankingNumber = rankingNumber + 1%}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

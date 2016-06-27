@@ -1,7 +1,24 @@
+html {
+  height: 100%;
+  
+}
+
 body {
-	background-image: url(../img/body.jpg);
-	background-position: center; 
+	background: url(../img/body.jpg) no-repeat center center fixed;
+	background-position: center;
+  background-size: cover; 
 	background-color: black;
+  background-repeat: no-repeat;
+}
+
+#tabla {
+  width: 70%;
+}
+
+#form {
+  width: 60%;
+  height: 55%;
+  margin-top: 6%;
 }
 
 p {
