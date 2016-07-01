@@ -5,7 +5,7 @@ namespace App\controllers;
 use App\Request;
 use App\User;
 use App\Score;
-use App\Database;
+use Flight;
 
 class ViewsController
 {
@@ -14,15 +14,10 @@ class ViewsController
         return view('form.html');
     }
 
-    public static function battle($user1, $user2)
+    public static function battle()
     {
-        echo $user1 . "\n";
-        echo $user2 . "\n";
-        /*
         try {
             $request = new Request();
-            $database = new Database();
-            $score = new Score();
             $user1 = new User();
             $user2 = new User();
 
@@ -31,13 +26,33 @@ class ViewsController
             $user1->setStars(json_decode($request->getRepos(Flight::request()->data->user1)));
             $user1->setScore();
 
+            $newScore = Score::whereUsername($user1->getUsername())->first();
+            if ($newScore) {
+                $newScore->score = $user1->getScore();
+                $newScore->save();
+            } else {
+                Score::create([
+                    'username' => $user1->getUsername(),
+                    'score'    => $user1->getScore()
+                ]);
+            }
+
+
             $user2->setUser(json_decode($request->getUser(Flight::request()->data->user2)));
             $user2->setEvents(json_decode($request->getEvents(Flight::request()->data->user2)));
             $user2->setStars(json_decode($request->getRepos(Flight::request()->data->user2)));
             $user2->setScore();
 
-            $database->insertUser($user1->getUsername(), $user1->getScore());
-            $database->insertUser($user2->getUsername(), $user2->getScore());
+            $newScore = Score::whereUsername($user2->getUsername())->first();
+            if ($newScore) {
+                $newScore->score = $user2->getScore();
+                $newScore->save();
+            } else {
+                Score::create([
+                    'username' => $user2->getUsername(),
+                    'score'    => $user2->getScore()
+                ]);
+            }
 
             $config_render = [
                 'usuario_1' => $user1,
@@ -47,17 +62,21 @@ class ViewsController
             return view('battle.html', $config_render);
         } catch (Exception $e) {
             return view('form.html', ['error' => true]);
-        }*/
+        }
     }
 
     public static function scores()
     {
-        $database = new Database();
+
+        $ranking = Score::orderBy('score', 'DESC')
+            ->take(10)
+            ->get()
+            ->toArray();
+
         $rankingNumber = 1;
-        $scoreArray = $database->getRanking("scores");
 
         $config_render = [
-            'scoreArray' => $scoreArray,
+            'scoreArray' => $ranking,
             'rankingNumber' => $rankingNumber
         ];
         return view('scores.html', $config_render);

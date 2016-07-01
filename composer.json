@@ -12,7 +12,8 @@
         "guzzlehttp/guzzle": "~6.0",
         "vlucas/phpdotenv": "~2.2.1",
         "mikecao/flight": "^1.2",
-        "robmorgan/phinx": "^0.6.1"
+        "robmorgan/phinx": "^0.6.1",
+        "illuminate/database": "5.2.*"
     },
     "autoload": {
         "psr-4": {

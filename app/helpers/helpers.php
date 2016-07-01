@@ -9,10 +9,3 @@ if (! function_exists('view')) {
         $twig->display($template, array_merge(["layout" => $layout], $data));
     }
 }
-
-if (! function_exists('configDatabase')) {
-    function configDatabase()
-    {
-        return require 'config/configDatabase.php';
-    }
-}

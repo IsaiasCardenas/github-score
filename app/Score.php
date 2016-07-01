@@ -1,19 +1,12 @@
 <?php
-
 namespace App;
 
-class Score
+use Illuminate\Database\Eloquent\Model;
+
+class Score extends Model
 {
-    protected $username;
-    protected $score;
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function getScore()
-    {
-        return $this->score;
-    }
+    protected $fillable = [
+        'username',
+        'score'
+    ];
 }

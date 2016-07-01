@@ -18,7 +18,7 @@
 		                <br>
 		               	<h1>Github Ranking</h1>
 		                <br>
-		                <p>Tabla con el ranking Github</p>
+		                <p>Ranking top 10 Github</p>
 		                <br>
 	                </div>
                 </div>
@@ -37,8 +37,8 @@
                     {% for scoreElement in scoreArray %}
                         <tr>
                             <td><p>{{rankingNumber}}</p></td>
-                            <td><p>{{scoreElement.getUsername}}</p></td>
-                            <td><p>{{scoreElement.getScore}}</p></td>
+                            <td><p>{{scoreElement.username}}</p></td>
+                            <td><p>{{scoreElement.score}}</p></td>
                             {%set rankingNumber = rankingNumber + 1%}
                         </tr>
                     {% endfor %}
