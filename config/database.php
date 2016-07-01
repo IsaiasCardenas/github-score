@@ -11,9 +11,9 @@ $capsule->addConnection([
     'driver' => 'mysql',
     'host' => 'localhost',
     'port' => '3306',
-    'database' => 'githubScore',
-    'username' => 'root',
-    'password' => 'isaias1994',
+    'database' => getenv('DB_DATABASE'),
+    'username' => getenv('DB_USERNAME'),
+    'password' => getenv('DB_PASSWORD'),
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
 ]);

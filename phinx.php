@@ -9,9 +9,9 @@ return [
     'development' => [
       'adapter' => 'mysql',
       'host' => 'localhost',
-      'name' => 'githubScore',
-      'user' => 'root',
-      'pass' => 'isaias1994',
+      'name' => getenv('DB_DATABASE'),
+      'user' => getenv('DB_USERNAME'),
+      'pass' => getenv('DB_PASSWORD'),
       'port' => 3306
     ]
   ]
